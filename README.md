@@ -1,11 +1,6 @@
 # SistemaBuenCorte
 Sistema de facturación e inventario para la carnicería El Buen Corte. Proyecto de Programación III.
 
-# Sistema de Facturación e Inventario — El Buen Corte
-
-Sistema de facturación e inventario para la carnicería **El Buen Corte**.
-Proyecto del curso de Programación III — ITLA.
-
 ## Descripción
 
 Aplicación web multicapa para la gestión de una carnicería. Permite la
