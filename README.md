@@ -50,3 +50,43 @@ dotnet run
 > El archivo `appsettings.json` versionado contiene solo un valor de ejemplo.
 
 ## Estructura del proyecto
+
+SistemaBuenCorte/
+
+├── SistemaBuenCorte.sln
+
+├── src/
+
+│   ├── SistemaBuenCorte.Web/    # Presentación (Controllers, Views, navbar/sidebar)
+
+│   ├── SistemaBuenCorte.BLL/    # Lógica de negocio (Services)
+
+│   └── SistemaBuenCorte.DAL/    # Acceso a datos (DbContext, Entities, Migrations)
+
+├── README.md
+
+└── .gitignore
+
+## Módulos implementados
+
+- [ ] Base de datos y configuración del repositorio
+- [ ] Módulo de Login (autenticación y validación por rol)
+- [ ] Módulo de Productos (CRUD con validaciones)
+- [ ] Listado de productos con filtro por nombre o categoría
+
+## Roles del sistema
+
+- *Cajero:* acceso a facturación y operaciones de venta.
+- *Administrador:* gestión de productos, inventario y acceso a reportes.
+
+## Autores
+
+- Dioris Arias — @usuario_github
+- (Integrante 2) — @usuario_github
+- (Integrante 3) — @usuario_github
+- (Integrante 4) — @usuario_github
+- (Integrante 5) — @usuario_github
+
+---
+
+Programación III · ITLA · 2026
