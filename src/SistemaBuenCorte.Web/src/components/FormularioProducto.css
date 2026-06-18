@@ -1,0 +1,221 @@
+/* Estilos del modal FormularioProducto
+   Sigue la misma paleta que ProductosPage.css */
+
+/* Fondo oscuro detrás del modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Caja del modal */
+.modal-contenedor {
+  background: #ffffff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* Header del modal */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 0.5px solid #ece9e2;
+}
+
+.modal-header h2 {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+  color: #2c2c2a;
+}
+
+.btn-cerrar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 0.5px solid #d3d1c7;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #5f5e5a;
+}
+
+.btn-cerrar:hover {
+  background: #f1efe8;
+}
+
+/* Cuerpo del modal */
+.modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Campo individual */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c2c2a;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 14px;
+  color: #2c2c2a;
+  background: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: #d85a30;
+}
+
+.campo textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+/* Campo con error */
+.campo-error input,
+.campo-error textarea,
+.campo-error select {
+  border-color: #a32d2d;
+}
+
+.mensaje-error {
+  font-size: 12px;
+  color: #a32d2d;
+}
+
+/* Dos campos en la misma fila */
+.campo-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Radio buttons de tipo de venta */
+.radio-grupo {
+  display: flex;
+  gap: 10px;
+}
+
+.radio-opcion {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: #5f5e5a;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  flex: 1;
+  justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.radio-opcion input[type="radio"] {
+  accent-color: #d85a30;
+}
+
+.radio-activo {
+  border-color: #d85a30;
+  background: #faece7;
+  color: #2c2c2a;
+  font-weight: 500;
+}
+
+/* Footer del modal */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px 20px;
+  border-top: 0.5px solid #ece9e2;
+}
+
+.btn-cancelar {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 0.5px solid #d3d1c7;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2c2a;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background: #f1efe8;
+}
+
+.btn-guardar {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: none;
+  background: #d85a30;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-guardar:hover {
+  background: #993c1d;
+}
+
+/* Checkbox de producto activo */
+.campo-activo {
+  flex-direction: row;
+  align-items: center;
+}
+
+.label-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2c2c2a;
+  cursor: pointer;
+}
+
+.label-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #d85a30;
+  cursor: pointer;
+}

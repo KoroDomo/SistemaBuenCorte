@@ -1,0 +1,239 @@
+.productos-page {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #2c2c2a;
+  padding: 24px 32px;
+  background: #f4f1ec;
+  min-height: 100vh;
+}
+
+/* Header */
+.productos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.productos-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.productos-subtitulo {
+  font-size: 13px;
+  color: #888780;
+  margin: 4px 0 0;
+}
+
+/* Toolbar */
+.productos-toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.buscador {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 40px;
+}
+
+.buscador i {
+  font-size: 18px;
+  color: #888780;
+}
+
+.buscador input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  background: transparent;
+}
+
+.btn-filtrar,
+.btn-nuevo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid #d3d1c7;
+}
+
+.btn-filtrar {
+  background: #ffffff;
+  color: #2c2c2a;
+}
+
+.btn-filtrar:hover {
+  background: #f1efe8;
+}
+
+.btn-nuevo {
+  background: #d85a30;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-nuevo:hover {
+  background: #993c1d;
+}
+
+/* Tabla */
+.productos-tabla-contenedor {
+  background: #ffffff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.productos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.productos-tabla thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #888780;
+  padding: 14px 20px;
+  border-bottom: 0.5px solid #d3d1c7;
+}
+
+.productos-tabla tbody td {
+  padding: 14px 20px;
+  border-bottom: 0.5px solid #ece9e2;
+}
+
+.productos-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.celda-nombre {
+  font-weight: 500;
+}
+
+.col-acciones {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.stock-cero {
+  color: #a32d2d;
+  font-weight: 500;
+}
+
+/* Badges de tipo de venta */
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.badge-tipo-peso {
+  background: #faece7;
+  color: #993c1d;
+}
+
+.badge-tipo-unidad {
+  background: #e6f1fb;
+  color: #185fa5;
+}
+
+/* Badges de estado */
+.badge-estado-activo {
+  background: #eaf3de;
+  color: #3b6d11;
+}
+
+.badge-estado-sinStock {
+  background: #f1efe8;
+  color: #5f5e5a;
+}
+
+/* Botones de acción */
+.btn-icono {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 0.5px solid #d3d1c7;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 6px;
+  font-size: 16px;
+  color: #5f5e5a;
+}
+
+.btn-icono:hover {
+  background: #f1efe8;
+}
+
+/* Estado */
+.estado-vacio {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888780;
+  font-size: 14px;
+}
+
+/* Paginación */
+.paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #888780;
+}
+
+.paginacion-botones {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-pagina {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 0.5px solid #d3d1c7;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2c2c2a;
+}
+
+.btn-pagina:hover:not(:disabled) {
+  background: #f1efe8;
+}
+
+.btn-pagina:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-pagina.activa {
+  background: #d85a30;
+  color: #ffffff;
+  border: none;
+}

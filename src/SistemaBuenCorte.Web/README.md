@@ -1,13 +1,53 @@
-# Capa de Presentación (Web)
+# SistemaBuenCorte.Web — Capa de Presentación
 
-Interfaz de usuario del sistema: lo que ve e interactúa el usuario final.
+Interfaz de usuario del sistema, desarrollada en **React** (Create React App).
 
-**Aquí va:**
-- Controllers / Pages / Componentes (según la tecnología que se acuerde)
-- Vistas (formularios de login, tabla de productos, navbar, sidebar)
-- Archivos estáticos (CSS, JS, imágenes)
-- Configuración de arranque (`Program.cs`, `appsettings.json`)
+## Tecnologías
 
-**Depende de:** `SistemaBuenCorte.BLL`
+- React 18
+- React Router DOM
+- Axios
+- Tabler Icons (webfont)
 
-> Tecnología pendiente de acordar por el equipo (MVC / Razor Pages / Blazor).
+## Estructura
+
+```
+src/
+├── components/
+│   ├── ProductosPage.jsx       # Tabla de productos con búsqueda y paginación
+│   ├── ProductosPage.css
+│   ├── FormularioProducto.jsx  # Modal para crear y editar productos
+│   └── FormularioProducto.css
+├── services/
+│   └── productosApi.js         # Funciones CRUD para conectar con la API del backend
+├── mock/
+│   └── productosMock.js        # Datos de ejemplo (se reemplaza cuando el backend esté listo)
+└── App.js                      # Punto de entrada de la aplicación
+```
+
+## Instalación
+
+```bash
+cd src/SistemaBuenCorte.Web
+npm install
+npm start
+```
+
+## Módulos implementados
+
+- Listado de productos con búsqueda por nombre o categoría
+- Paginación (6 productos por página)
+- Formulario modal para crear producto
+- Formulario modal para editar producto
+- Eliminar producto con confirmación
+- Mensajes de feedback al crear, editar y eliminar
+
+## Pendiente
+
+- Conectar con la API real del backend (`productosApi.js` ya está preparado)
+- Integrar sidebar (le corresponde a otro integrante)
+- Integrar módulo de Login
+
+## Depende de
+
+`SistemaBuenCorte.BLL` — a través de la API REST expuesta por `SistemaBuenCorte.Web` (backend .NET)
