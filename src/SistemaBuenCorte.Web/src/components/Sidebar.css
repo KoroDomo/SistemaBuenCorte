@@ -1,0 +1,224 @@
+/* ═══════════════════════════════════════════
+   Sidebar — El Buen Corte
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.sidebar {
+  width: 230px;
+  min-width: 230px;
+  height: 100vh;
+  background: #1a0a08;
+  background-image: linear-gradient(180deg, #2d0e0b 0%, #1a0a08 100%);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  transition: width 0.22s ease, min-width 0.22s ease;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.sidebar--collapsed {
+  width: 64px;
+  min-width: 64px;
+}
+
+/* ── Brand ────────────────────────────────── */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  min-height: 64px;
+}
+
+.sidebar-brand-logo {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #f4f1ec;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-brand-texto {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-brand-nombre {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f4f1ec;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-brand-sub {
+  font-size: 10px;
+  color: rgba(244,241,236,0.45);
+  margin-top: 1px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: rgba(244,241,236,0.5);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-toggle:hover {
+  color: #f4f1ec;
+  background: rgba(255,255,255,0.08);
+}
+
+/* ── Navegación ───────────────────────────── */
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(244,241,236,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 12px 6px;
+  margin-top: 4px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: rgba(244,241,236,0.62);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sidebar-item i {
+  font-size: 19px;
+  flex-shrink: 0;
+}
+
+.sidebar-item:hover {
+  background: rgba(255,255,255,0.07);
+  color: #f4f1ec;
+}
+
+.sidebar-item--active {
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+}
+
+.sidebar-item--active:hover {
+  background: rgba(255,255,255,0.15);
+  color: #ffffff;
+}
+
+/* ── Footer usuario ───────────────────────── */
+.sidebar-footer {
+  padding: 12px 8px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d85a30, #a33a1f);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sidebar-user-nombre {
+  font-size: 13px;
+  font-weight: 500;
+  color: #f4f1ec;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-rol {
+  font-size: 11px;
+  color: rgba(244,241,236,0.45);
+}
+
+.sidebar-logout {
+  background: none;
+  border: none;
+  color: rgba(244,241,236,0.45);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.sidebar-logout:hover {
+  color: #e05252;
+  background: rgba(224,82,82,0.1);
+}

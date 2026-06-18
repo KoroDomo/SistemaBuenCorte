@@ -1,0 +1,22 @@
+/* ═══════════════════════════════════════════
+   AppLayout — shell principal
+   ═══════════════════════════════════════════ */
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-layout-contenido {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #f4f1ec;
+}
+
+.app-layout-main {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+}
