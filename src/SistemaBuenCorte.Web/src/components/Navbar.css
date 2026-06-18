@@ -1,0 +1,137 @@
+/* ═══════════════════════════════════════════
+   Navbar — El Buen Corte
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.navbar {
+  height: 60px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alineado a la derecha */
+  padding: 0 32px;
+  font-family: 'Inter', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none; /* Deja clickear lo de abajo */
+}
+
+.navbar > * {
+  pointer-events: auto; /* Reactiva los clicks para los elementos internos */
+}
+
+/* ── Izquierda (solo móvil) ──────────── */
+.navbar-izquierda {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.navbar-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #5f5e5a;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.navbar-menu-btn:hover {
+  background: #f1efe8;
+}
+
+.navbar-titulo {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1a1a18;
+  margin: 0;
+}
+
+/* ── Derecha ─────────────────────────────── */
+.navbar-derecha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-icono-btn {
+  background: none;
+  border: none;
+  color: #888780;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icono-btn:hover {
+  color: #2c2c2a;
+  background: #f1efe8;
+}
+
+/* Perfil */
+.navbar-perfil {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.navbar-perfil:hover {
+  background: #f4f1ec;
+}
+
+.navbar-perfil-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d85a30, #a33a1f);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navbar-perfil-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-perfil-nombre {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a18;
+  white-space: nowrap;
+}
+
+.navbar-perfil-rol {
+  font-size: 11px;
+  color: #888780;
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  .navbar-menu-btn {
+    display: flex;
+  }
+
+  .navbar-perfil-info {
+    display: none;
+  }
+}
