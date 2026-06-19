@@ -142,6 +142,42 @@ public class AppDbContext : DbContext
                 Stock = 40,
                 Activo = true,
                 FechaCreacion = new DateTime(2026, 1, 1)
+            },
+            new Producto
+            {
+                Id = 3,
+                Nombre = "Chorizo artesanal",
+                Descripcion = "Chorizo fresco, sazonado",
+                Categoria = "Embutidos",
+                TipoVenta = "Peso",
+                Precio = 220.00m,
+                Stock = 30.5m,
+                Activo = true,
+                FechaCreacion = new DateTime(2026, 1, 1)
+            },
+            new Producto
+            {
+                Id = 4,
+                Nombre = "Costilla de cerdo",
+                Descripcion = "Costilla para asar, por kilo",
+                Categoria = "Cerdo",
+                TipoVenta = "Peso",
+                Precio = 300.00m,
+                Stock = 18.75m,
+                Activo = true,
+                FechaCreacion = new DateTime(2026, 1, 1)
+            },
+            new Producto
+            {
+                Id = 5,
+                Nombre = "Salchichas mixtas (pack)",
+                Descripcion = "Pack de 5 salchichas artesanales",
+                Categoria = "Embutidos",
+                TipoVenta = "Unidad",
+                Precio = 120.00m,
+                Stock = 50,
+                Activo = true,
+                FechaCreacion = new DateTime(2026, 1, 1)
             }
         );
 

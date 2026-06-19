@@ -13,10 +13,11 @@ Aplicación web multicapa (API .NET + React) para gestionar productos, inventari
 - Node.js
 
 ## Requisitos y verificación
-- .NET 9 SDK (comprobar con `dotnet --version`)
-- SQL Server LocalDB (Instance: `(localdb)\\MSSQLLocalDB`) — comprobar con `sqllocaldb info MSSQLLocalDB`
-- Node.js 18+ (comprobar con `node --version`)
-- dotnet-ef (herramienta opcional): `dotnet tool install --global dotnet-ef`
+- .NET 9 SDK (comprobar con `dotnet --version`; se requiere 9.x)
+- SQL Server LocalDB (instancia `(localdb)\\MSSQLLocalDB`). LocalDB es un componente del sistema, no está incluido en el repositorio; instalar SQL Server Express LocalDB o Visual Studio.
+- Node.js 18+ y npm
+- dotnet-ef (opcional, para migraciones): `dotnet tool install --global dotnet-ef`
+- Git
 
 Verificación rápida (ejecuta antes de continuar):
 ```powershell
@@ -28,7 +29,14 @@ npm --version
 git --version
 ```
 
-Si LocalDB no está instalado, instalar SQL Server Express LocalDB o Visual Studio (incluye LocalDB). Como alternativa, se puede usar un contenedor Docker con SQL Server y ajustar la cadena de conexión en `appsettings.Development.json`.
+Recomendaciones rápidas:
+- LocalDB debe estar instalado y ejecutándose en la máquina (el repositorio no contiene el motor de base de datos). Ejecutar `sqllocaldb start MSSQLLocalDB` antes de aplicar migraciones.
+- Usar `npm ci` para instalaciones reproducibles en entornos de evaluación; `npm install` está bien para desarrollo local.
+- Instalar `dotnet-ef` para aplicar migraciones localmente si se van a ejecutar: `dotnet tool install --global dotnet-ef`.
+- Si Git en Windows da errores por longitud de rutas, habilitar rutas largas: `git config --system core.longpaths true`.
+- Detener servidores (`dotnet run`, `npm start`) antes de ejecutar `dotnet ef database update`.
+
+Si prefieres usar Docker en vez de LocalDB, ajustar la cadena de conexión en `appsettings.Development.json` y documentar el contenedor a usar.
 
 ## Estructura
 ```
