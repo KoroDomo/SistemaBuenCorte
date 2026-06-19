@@ -5,6 +5,7 @@ namespace SistemaBuenCorte.BLL.DTOs;
 /// </summary>
 public class LoginResponseDto
 {
+    public int Id { get; set; } 
     public string Token { get; set; } = string.Empty;
     public string NombreUsuario { get; set; } = string.Empty;
     public string NombreCompleto { get; set; } = string.Empty;

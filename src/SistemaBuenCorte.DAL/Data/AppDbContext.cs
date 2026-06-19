@@ -101,7 +101,7 @@ public class AppDbContext : DbContext
                 Id = 1,
                 NombreCompleto = "Administrador del Sistema",
                 NombreUsuario = "admin",
-                ContrasenaHash = "PLACEHOLDER_CAMBIAR",
+                ContrasenaHash = "$2a$11$ZiF34myITAxk5LYYp4vIS.aN.zFmicf1eoscUjqFlriTsEKQKWgq6",
                 Rol = "Administrador",
                 Activo = true,
                 FechaCreacion = new DateTime(2026, 1, 1)
@@ -111,7 +111,7 @@ public class AppDbContext : DbContext
                 Id = 2,
                 NombreCompleto = "Cajero de Prueba",
                 NombreUsuario = "cajero",
-                ContrasenaHash = "PLACEHOLDER_CAMBIAR",
+                ContrasenaHash = "$2a$11$jEUie1ZnO7uOi.aj0Trki.QkINtTVDqa784n3C/aIiKM2dHPcGXsC",
                 Rol = "Cajero",
                 Activo = true,
                 FechaCreacion = new DateTime(2026, 1, 1)

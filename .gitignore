@@ -52,3 +52,5 @@ packages/
 ## OS
 .DS_Store
 Thumbs.db
+src\SistemaBuenCorte.Web\login-react-ts\node_modules\
+src/SistemaBuenCorte.Web/login-react-ts/node_modules/
