@@ -26,7 +26,13 @@ function LoginPage() {
     try {
       const datos = await loginApi(usuario.trim(), contrasena);
       login(datos);
-      navigate("/dashboard");
+      // Redirigir según rol: administradores -> dashboard, cajeros -> punto de venta
+      const rol = (datos?.rol || datos?.Rol || "").toString().toLowerCase();
+      if (rol === "administrador") {
+        navigate("/dashboard");
+      } else {
+        navigate("/punto-venta");
+      }
     } catch (err) {
       const msg =
         err?.response?.data?.mensaje || "Usuario o contraseña incorrectos.";

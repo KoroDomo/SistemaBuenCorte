@@ -74,11 +74,11 @@ function App() {
               }
             />
 
-            {/* Productos → solo admin */}
+            {/* Productos → accesible por ambos roles */}
             <Route
               path="/productos"
               element={
-                <RutaProtegida rolRequerido="Administrador">
+                <RutaProtegida>
                   <ProductosPage />
                 </RutaProtegida>
               }
