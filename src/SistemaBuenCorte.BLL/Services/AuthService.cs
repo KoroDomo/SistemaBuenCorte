@@ -41,7 +41,6 @@ public class AuthService : IAuthService
 
         return new LoginResponseDto
         {
-            Id = usuario.Id,
             NombreCompleto = usuario.NombreCompleto,
             NombreUsuario = usuario.NombreUsuario,
             Rol = usuario.Rol
