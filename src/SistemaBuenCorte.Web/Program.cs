@@ -13,8 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Servicios de negocio
+// Servicios de negocio
 builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<ICajaService, CajaService>();
 
 // JWT - generar secret dinamicamente si es el default
 var jwtSettings = builder.Configuration.GetSection("Jwt");
