@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { obtenerProductos } from "../services/productosApi";
+import { registrarVenta } from "../services/ventasApi";
+import { useAuth } from "../context/AuthContext";
 import "./VentasPage.css";
 
 const LIBRAS_POR_KG = 2.20462;
@@ -52,6 +54,8 @@ function crearItemCarrito(producto, cantidad, unidadPeso) {
 }
 
 function VentasPage() {
+  const { sesion } = useAuth();
+
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
@@ -62,6 +66,7 @@ function VentasPage() {
   const [carrito, setCarrito] = useState([]);
   const [descuento, setDescuento] = useState("");
   const [resumenVenta, setResumenVenta] = useState(null);
+  const [procesandoVenta, setProcesandoVenta] = useState(false);
 
   useEffect(() => {
     setCargando(true);
@@ -140,23 +145,80 @@ function VentasPage() {
     setCarrito((actual) => actual.filter((item) => item.carritoId !== carritoId));
   };
 
-  const finalizarVenta = () => {
-    if (carrito.length === 0) return;
+  const finalizarVenta = async () => {
+    if (carrito.length === 0 || procesandoVenta) return;
 
-    setResumenVenta({
-      fecha: new Date().toLocaleString("es-DO", {
-        dateStyle: "medium",
-        timeStyle: "short",
-      }),
-      productos: carrito,
-      subtotal: totales.subtotal,
+    const usuarioId = Number(sesion?.id ?? sesion?.Id);
+
+    if (!usuarioId) {
+      setError("No se pudo identificar el usuario de la sesión.");
+      return;
+    }
+
+    const productosVendidos = [...carrito];
+
+    const solicitud = {
+      usuarioId,
+      metodoPago: "Efectivo",
       porcentajeDescuento: totales.porcentajeDescuento,
-      montoDescuento: totales.montoDescuento,
-      total: totales.total,
-    });
+      nombreCliente: null,
+      detalles: carrito.map((item) => ({
+        productoId: item.productoId,
+        cantidad: Number(cantidadParaCalculo(item).toFixed(3)),
+      })),
+    };
 
-    setCarrito([]);
-    setDescuento("");
+    setProcesandoVenta(true);
+    setError("");
+
+    try {
+      const venta = await registrarVenta(solicitud);
+
+      const fechaVenta = venta?.fecha ?? venta?.Fecha ?? new Date().toISOString();
+      const numeroFactura = venta?.numeroFactura ?? venta?.NumeroFactura ?? "";
+      const subtotal = Number(venta?.subtotal ?? venta?.Subtotal ?? 0);
+      const montoDescuento = Number(
+        venta?.montoDescuento ?? venta?.MontoDescuento ?? 0
+      );
+      const total = Number(venta?.total ?? venta?.Total ?? 0);
+
+      setResumenVenta({
+        id: venta?.id ?? venta?.Id,
+        numeroFactura,
+        fecha: new Date(fechaVenta).toLocaleString("es-DO", {
+          dateStyle: "medium",
+          timeStyle: "short",
+        }),
+        productos: productosVendidos,
+        subtotal,
+        porcentajeDescuento: totales.porcentajeDescuento,
+        montoDescuento,
+        total,
+      });
+
+      setCarrito([]);
+      setDescuento("");
+
+      try {
+        const productosActualizados = await obtenerProductos();
+        setProductos(
+          Array.isArray(productosActualizados) ? productosActualizados : []
+        );
+      } catch {
+        // La venta ya fue registrada; solo falló refrescar la lista visual.
+      }
+    } catch (err) {
+      const erroresApi = err?.response?.data?.errores;
+      const mensajeApi = err?.response?.data?.mensaje;
+
+      setError(
+        Array.isArray(erroresApi)
+          ? erroresApi.join(" ")
+          : mensajeApi || "No se pudo registrar la venta."
+      );
+    } finally {
+      setProcesandoVenta(false);
+    }
   };
 
   return (
@@ -165,7 +227,7 @@ function VentasPage() {
         <div>
           <h1>Ventas</h1>
           <p className="ventas-subtitulo">
-            Venta local simulada usando productos reales del inventario
+            Registre ventas utilizando productos reales del inventario
           </p>
         </div>
       </header>
@@ -344,11 +406,11 @@ function VentasPage() {
             <button
               type="button"
               className="ventas-finalizar"
-              disabled={carrito.length === 0}
+              disabled={carrito.length === 0 || procesandoVenta}
               onClick={finalizarVenta}
             >
               <i className="ti ti-check" aria-hidden="true"></i>
-              Finalizar venta
+              {procesandoVenta ? "Registrando..." : "Finalizar venta"}
             </button>
           </div>
         </aside>
@@ -358,14 +420,19 @@ function VentasPage() {
         <section className="ventas-panel ventas-resumen">
           <div className="ventas-panel-header">
             <div>
-              <h2>Resumen de venta simulada</h2>
+              <h2>
+                Venta registrada
+                {resumenVenta.numeroFactura
+                  ? ` · ${resumenVenta.numeroFactura}`
+                  : ""}
+              </h2>
               <span>{resumenVenta.fecha}</span>
             </div>
           </div>
 
           <div className="ventas-resumen-aviso">
             <i className="ti ti-info-circle" aria-hidden="true"></i>
-            Esta venta fue simulada en frontend y no fue guardada en la base de datos.
+            La venta fue guardada, el inventario fue actualizado y la factura fue generada.
           </div>
 
           <div className="ventas-resumen-tabla-contenedor">

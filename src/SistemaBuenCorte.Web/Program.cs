@@ -16,6 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICajaService, CajaService>();
+builder.Services.AddScoped<IVentaService, VentaService>();
 
 // Autorización
 builder.Services.AddAuthorization();
