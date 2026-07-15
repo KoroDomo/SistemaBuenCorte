@@ -1,0 +1,38 @@
+﻿.modal-caja {
+    max-width: 520px;
+}
+
+.resumen-cierre {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+    .resumen-cierre > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .resumen-cierre span {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .resumen-cierre strong {
+        color: #1e293b;
+    }
+
+    .resumen-cierre .monto-esperado {
+        padding-top: 12px;
+        border-top: 1px solid #e2e8f0;
+    }
+
+        .resumen-cierre .monto-esperado strong {
+            color: #15803d;
+            font-size: 18px;
+        }
