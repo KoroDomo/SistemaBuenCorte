@@ -13,10 +13,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Servicios de negocio
-// Servicios de negocio
 builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICajaService, CajaService>();
+
+// Autorización
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 
 // JWT - generar secret dinamicamente si es el default
 var jwtSettings = builder.Configuration.GetSection("Jwt");
@@ -102,44 +105,19 @@ static async Task SeedDataAsync(IServiceProvider services)
     context.Usuarios.AddRange(
         new Usuario
         {
-            NombreCompleto = "Administrador",
+            NombreCompleto = "Administrador del Sistema",
             NombreUsuario = "admin",
-            ContrasenaHash = "admin123",
+            ContrasenaHash = BCrypt.Net.BCrypt.HashPassword("Admin123!"),
             Rol = "Administrador",
             Activo = true,
             FechaCreacion = DateTime.Now
         },
         new Usuario
         {
-            NombreCompleto = "Cajero",
+            NombreCompleto = "Cajero de Prueba",
             NombreUsuario = "cajero",
-            ContrasenaHash = "cajero123",
+            ContrasenaHash = BCrypt.Net.BCrypt.HashPassword("Cajero123!"),
             Rol = "Cajero",
-            Activo = true,
-            FechaCreacion = DateTime.Now
-        }
-    );
-
-    context.Productos.AddRange(
-        new Producto
-        {
-            Nombre = "Carne molida de res",
-            Descripcion = "Carne molida fresca 80/20",
-            Categoria = "Res",
-            TipoVenta = "Peso",
-            Precio = 280.00m,
-            Stock = 25.500m,
-            Activo = true,
-            FechaCreacion = DateTime.Now
-        },
-        new Producto
-        {
-            Nombre = "Pechuga de pollo",
-            Descripcion = "Bandeja de pechuga deshuesada",
-            Categoria = "Pollo",
-            TipoVenta = "Unidad",
-            Precio = 350.00m,
-            Stock = 40.000m,
             Activo = true,
             FechaCreacion = DateTime.Now
         }

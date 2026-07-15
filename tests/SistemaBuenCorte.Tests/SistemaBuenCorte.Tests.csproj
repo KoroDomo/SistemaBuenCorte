@@ -24,7 +24,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
 
     <!-- BCrypt: para generar el hash de la contraseña de los usuarios de prueba -->
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
 
     <!-- Cobertura de código (opcional, para la evidencia de coverage) -->
     <PackageReference Include="coverlet.collector" Version="6.0.2">
