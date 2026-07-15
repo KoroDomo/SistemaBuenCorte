@@ -37,6 +37,7 @@ public class UsuarioService : IUsuarioService
 
         return new LoginResponseDto
         {
+            Id = usuario.Id,
             Token = token,
             NombreUsuario = usuario.NombreUsuario,
             NombreCompleto = usuario.NombreCompleto,

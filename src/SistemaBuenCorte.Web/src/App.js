@@ -4,6 +4,7 @@ import LoginPage from "./components/LoginPage";
 import AppLayout from "./components/AppLayout";
 import RutaProtegida from "./components/RutaProtegida";
 import ProductosPage from "./components/ProductosPage";
+import VentasPage from "./components/VentasPage";
 
 /* ──────────────────────────────────────────────
    Páginas placeholder para rutas futuras
@@ -107,7 +108,7 @@ function App() {
             {/* Ventas → ambos roles (aunque el cajero entra por punto de venta, mantenemos la ruta por compatibilidad) */}
             <Route
               path="/ventas"
-              element={<PlaceholderPage nombre="Ventas" />}
+              element={<VentasPage />}
             />
 
             {/* Caja → ambos roles */}
@@ -129,7 +130,7 @@ function App() {
             {/* Punto de Venta → ambos roles (operación) */}
             <Route
               path="/punto-venta"
-              element={<PlaceholderPage nombre="Punto de venta" />}
+              element={<VentasPage />}
             />
 
             {/* Historial de ventas → ambos roles (operación) */}
