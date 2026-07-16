@@ -17,6 +17,7 @@ builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ICajaService, CajaService>();
 builder.Services.AddScoped<IVentaService, VentaService>();
+builder.Services.AddScoped<IReporteService, ReporteService>();
 
 // Autorización
 builder.Services.AddAuthorization();

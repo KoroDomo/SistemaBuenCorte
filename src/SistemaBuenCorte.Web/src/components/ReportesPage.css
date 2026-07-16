@@ -1,0 +1,333 @@
+/* Estilos del modulo de Reportes*/
+
+.reportes-page {
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #2c2c2a;
+  padding: 24px 32px;
+  background: #f4f1ec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.reportes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.reportes-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.reportes-subtitulo {
+  font-size: 13px;
+  color: #888780;
+  margin: 4px 0 0;
+}
+
+.reportes-header-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 42px;
+}
+
+.btn-fecha,
+.btn-exportar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 0.5px solid #d3d1c7;
+}
+
+.btn-fecha {
+  background: #ffffff;
+  color: #2c2c2a;
+}
+
+.btn-exportar {
+  background: #ffffff;
+  color: #d85a30;
+  border-color: #d85a30;
+}
+
+.btn-exportar:hover {
+  background: #faece7;
+}
+
+/* Tarjetas de resumen */
+.tarjetas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.tarjeta {
+  background: #ffffff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tarjeta-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #888780;
+  margin: 0;
+}
+
+.tarjeta-valor {
+  font-size: 26px;
+  font-weight: 500;
+  color: #2c2c2a;
+  margin: 6px 0 0;
+  line-height: 1.1;
+}
+
+.tarjeta-valor-sm {
+  font-size: 18px;
+}
+
+.tarjeta-variacion {
+  font-size: 12px;
+  font-weight: 500;
+  margin: 4px 0 0;
+}
+
+.tarjeta-variacion.positiva {
+  color: #3b6d11;
+}
+
+.tarjeta-variacion.negativa {
+  color: #a32d2d;
+}
+
+.tarjeta-subtexto {
+  font-size: 12px;
+  color: #888780;
+  margin: 4px 0 0;
+}
+
+/* Card base */
+.card {
+  background: #ffffff;
+  border: 0.5px solid #d3d1c7;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+/* Sección central */
+.seccion-central {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+
+/* Gráfico de barras */
+.grafico-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grafico-header h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.grafico-periodo {
+  font-size: 12px;
+  color: #888780;
+}
+
+.grafico-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 160px;
+  padding-bottom: 28px;
+  position: relative;
+}
+
+.barra-contenedor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.barra-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.barra {
+  width: 100%;
+  background: #e8b4a4;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease;
+  min-height: 4px;
+}
+
+.barra-hoy {
+  background: #d85a30;
+}
+
+.barra-label {
+  position: absolute;
+  bottom: 0;
+  font-size: 11px;
+  color: #888780;
+  white-space: nowrap;
+}
+
+.label-hoy {
+  color: #d85a30;
+  font-weight: 600;
+}
+
+/* Más vendidos */
+.mas-vendidos-card h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+
+.mas-vendidos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vendido-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vendido-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vendido-nombre {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c2c2a;
+}
+
+.vendido-cantidad {
+  font-size: 13px;
+  color: #888780;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 6px;
+  background: #ece9e2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barra-progreso-fill {
+  height: 100%;
+  background: #d85a30;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Historial */
+.historial-card {
+  margin-top: 0;
+}
+
+.historial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.historial-header h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn-ver-todo {
+  font-size: 13px;
+  color: #d85a30;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0;
+}
+
+.btn-ver-todo:hover {
+  text-decoration: underline;
+}
+
+.historial-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.historial-tabla thead th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #888780;
+  padding: 10px 16px;
+  border-bottom: 0.5px solid #ece9e2;
+}
+
+.historial-tabla tbody td {
+  padding: 14px 16px;
+  border-bottom: 0.5px solid #ece9e2;
+}
+
+.historial-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.factura-numero {
+  font-weight: 500;
+}
+
+.col-derecha {
+  text-align: right;
+}
+
+/* Estado vacío */
+.estado-vacio {
+  text-align: center;
+  padding: 40px;
+  color: #888780;
+  font-size: 14px;
+}
