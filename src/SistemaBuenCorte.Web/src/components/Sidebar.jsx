@@ -8,7 +8,6 @@ const MENU_ADMIN = [
   { to: "/ventas", icon: "ti-menu-2", label: "Ventas" },
   { to: "/caja", icon: "ti-cash", label: "Caja" },
   { to: "/descuentos", icon: "ti-discount", label: "Descuentos" },
-  { to: "/usuarios", icon: "ti-users", label: "Usuarios" },
   { section: "ANÁLISIS" },
   { to: "/reportes", icon: "ti-chart-bar", label: "Reportes" },
 ];

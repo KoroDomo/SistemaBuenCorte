@@ -1,9 +1,0 @@
-{
-  "providers": ["dotnet"],
-  "build": {
-    "cmd": "dotnet publish src/SistemaBuenCorte.Web/SistemaBuenCorte.WEB.csproj -c Release -o out"
-  },
-  "deploy": {
-    "cmd": "dotnet out/SistemaBuenCorte.WEB.dll"
-  }
-}
