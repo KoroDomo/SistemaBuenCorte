@@ -1,110 +1,149 @@
 # SistemaBuenCorte
-Sistema de facturación e inventario para la carnicería El Buen Corte. Proyecto de Programación III.
 
-## Resumen
-Aplicación web multicapa (API .NET + React) para gestionar productos, inventario y ventas. Usa SQL Server LocalDB y Entity Framework Core. Este README contiene pasos reproducibles para ejecutar la solución localmente.
+Sistema web de facturación, inventario y punto de venta para la carnicería **El Buen Corte**. Proyecto de Programación III · ITLA.
+
+Aplicación multicapa (API en .NET + frontend en React) para gestionar productos, ventas, caja, descuentos y reportes.
 
 ## Tecnologías
-- C# / .NET 9 (net9.0)
-- ASP.NET Core
+
+- C# / .NET 9 (`net9.0`) · ASP.NET Core
 - Entity Framework Core 9
 - SQL Server LocalDB
-- React (Create React App)
-- Node.js
+- React (Create React App) · Node.js
+- Arquitectura N-capas: DAL (datos) · BLL (negocio) · Web (API + frontend)
 
-## Requisitos y verificación
-- .NET 9 SDK (comprobar con `dotnet --version`; se requiere 9.x)
-- SQL Server LocalDB (instancia `(localdb)\\MSSQLLocalDB`). LocalDB es un componente del sistema, no está incluido en el repositorio; instalar SQL Server Express LocalDB o Visual Studio.
-- Node.js 18+ y npm
-- dotnet-ef (opcional, para migraciones): `dotnet tool install --global dotnet-ef`
-- Git
+---
 
-Verificación rápida (ejecuta antes de continuar):
-```powershell
-dotnet --version
-sqllocaldb info MSSQLLocalDB
-sqllocaldb start MSSQLLocalDB
-node --version
-npm --version
-git --version
+## Cómo ejecutar el proyecto
+
+> La base de datos **se crea y se llena con datos de prueba automáticamente** la primera vez que ejecutas el backend. **No es necesario** correr migraciones ni instalar `dotnet-ef`.
+
+### 1. Requisitos
+
+Instala estas tres cosas y verifica que están listas:
+
+| Requisito | Cómo verificar | Notas |
+|---|---|---|
+| **.NET 9 SDK** | `dotnet --version` → debe empezar en `9.` | Si sale una versión menor (o error), instala el SDK 9 desde dotnet.microsoft.com. **Este es el error más común.** |
+| **SQL Server LocalDB** | `sqllocaldb info MSSQLLocalDB` | Viene con Visual Studio o con "SQL Server Express LocalDB". Solo Windows (ver nota de Docker más abajo). |
+| **Node.js 18+** | `node --version` | Incluye `npm`. |
+
+### 2. Traer el código más reciente
+
+Todo el proyecto integrado vive en la rama **`main`**:
+
+```bash
+git clone https://github.com/KoroDomo/SistemaBuenCorte.git
+cd SistemaBuenCorte
 ```
 
-Recomendaciones rápidas:
-- LocalDB debe estar instalado y ejecutándose en la máquina (el repositorio no contiene el motor de base de datos). Ejecutar `sqllocaldb start MSSQLLocalDB` antes de aplicar migraciones.
-- Usar `npm ci` para instalaciones reproducibles en entornos de evaluación; `npm install` está bien para desarrollo local.
-- Instalar `dotnet-ef` para aplicar migraciones localmente si se van a ejecutar: `dotnet tool install --global dotnet-ef`.
-- Si Git en Windows da errores por longitud de rutas, habilitar rutas largas: `git config --system core.longpaths true`.
-- Detener servidores (`dotnet run`, `npm start`) antes de ejecutar `dotnet ef database update`.
+Si ya lo tenías clonado:
 
-Si prefieres usar Docker en vez de LocalDB, ajustar la cadena de conexión en `appsettings.Development.json` y documentar el contenedor a usar.
+```bash
+git checkout main
+git pull origin main
+```
 
-## Estructura
+### 3. Ejecutar el backend (Terminal 1)
+
+Desde la raíz del repositorio:
+
+```bash
+dotnet run --project src/SistemaBuenCorte.Web
+```
+
+La primera vez, esto crea la base `ElBuenCorte` en LocalDB y la siembra con los usuarios y datos de prueba. Cuando veas `Now listening on: http://localhost:5097`, el backend está listo. **Déjalo corriendo.**
+
+### 4. Ejecutar el frontend (Terminal 2)
+
+En una **segunda** terminal:
+
+```bash
+cd src/SistemaBuenCorte.Web
+npm install
+npm start
+```
+
+Se abre el navegador en `http://localhost:3000`. El frontend habla con el backend en el puerto 5097, así que **ambas terminales deben estar corriendo a la vez.**
+
+### 5. Iniciar sesión (credenciales de prueba)
+
+| Usuario | Contraseña | Rol |
+|---|---|---|
+| `admin` | `Admin123!` | Administrador |
+| `cajero` | `Cajero123!` | Cajero |
+
+---
+
+## Solución de problemas comunes
+
+**El login dice "contraseña incorrecta" o similar.**
+Casi siempre significa que la base de datos no se creó/sembró. Asegúrate de haber ejecutado `dotnet run` al menos una vez (crea y siembra la BD sola) y de que LocalDB esté disponible. Si el backend no arrancó por falta de .NET 9, la BD nunca se crea.
+
+**`dotnet` no se reconoce, o la versión no es 9.x.**
+Falta el SDK de .NET 9. Instálalo y reinicia la terminal. Verifica con `dotnet --version`.
+
+**No conecta a la base de datos / error de LocalDB.**
+LocalDB no está instalado o no está corriendo. En Windows:
+```powershell
+sqllocaldb start MSSQLLocalDB
+```
+(En Windows normalmente arranca solo al conectarse.)
+
+**El puerto 5097 o 3000 está ocupado.**
+Hay una instancia anterior corriendo. Ciérrala (Ctrl+C en su terminal) o cierra el proceso que usa el puerto.
+
+**El frontend abre pero no carga datos / errores en consola.**
+El backend no está corriendo, o está en otro puerto. Confirma que la Terminal 1 muestra `Now listening on: http://localhost:5097`.
+
+**Ya había corrido `dotnet ef database update` antes y ahora algo falla.**
+El proyecto crea la BD con `EnsureCreated`, no con migraciones. Si tienes una BD en estado inconsistente, elimínala (base `ElBuenCorte` en LocalDB) y deja que `dotnet run` la vuelva a crear desde cero.
+
+**Git en Windows da errores por rutas largas.**
+```powershell
+git config --system core.longpaths true
+```
+
+**Usar Docker en vez de LocalDB (Mac/Linux o quien no tenga LocalDB).**
+LocalDB es solo para Windows. En otros sistemas, levanta SQL Server en Docker y cambia la cadena `DefaultConnection` en `src/SistemaBuenCorte.Web/appsettings.json` para apuntar a ese contenedor.
+
+---
+
+## Estructura del proyecto
+
 ```
 SistemaBuenCorte/
 ├── SistemaBuenCorte.sln
 ├── src/
-│   ├── SistemaBuenCorte.Web/    # API + proyecto web
-│   ├── SistemaBuenCorte.BLL/    # Lógica de negocio
-│   └── SistemaBuenCorte.DAL/    # DbContext, entidades, migraciones
+│   ├── SistemaBuenCorte.Web/    # API, controllers y frontend React (carpeta src/)
+│   ├── SistemaBuenCorte.BLL/    # Lógica de negocio (servicios, DTOs, validaciones)
+│   └── SistemaBuenCorte.DAL/    # DbContext, entidades y migraciones
+└── tests/
+    └── SistemaBuenCorte.Tests/  # Pruebas unitarias (xUnit)
 ```
 
-## Pasos para ejecutar (desde la raíz del repositorio)
-1) Asegurar `develop` actualizado:
+## Módulos
+
+- **Productos** — CRUD de productos con control de inventario.
+- **Ventas / Punto de venta** — registro de ventas, descuento de stock y generación de factura.
+- **Caja** — apertura y cierre de turnos de caja.
+- **Descuentos** — catálogo de descuentos (porcentaje o monto fijo) gestionado por el administrador.
+- **Reportes** — reportes de ventas para administración.
+
+## Ejecutar las pruebas
+
 ```bash
-git checkout develop
-git pull origin develop
-```
-
-2) Iniciar LocalDB (si no está):
-```powershell
-sqllocaldb start MSSQLLocalDB
-```
-
-3) Aplicar migraciones y crear la base `ElBuenCorte`:
-(Detener cualquier `dotnet run` antes de ejecutar)
-```bash
-dotnet restore
-dotnet ef database update --project src\SistemaBuenCorte.DAL --startup-project src\SistemaBuenCorte.Web
-```
-
-4) Ejecutar backend (Terminal A):
-```bash
-dotnet run --project src\SistemaBuenCorte.Web
-```
-
-5) Ejecutar frontend (Terminal B):
-```bash
-cd src\SistemaBuenCorte.Web
-npm install
-npm start
-```
-O, para el sub-app `login-react-ts`:
-```bash
-cd src\SistemaBuenCorte.Web\login-react-ts
-npm install
-npm start
-```
-
-6) Credenciales de prueba (datos semilla):
-- admin / Admin123!
-- cajero / Cajero123!
-
-Las contraseñas se almacenan como hashes BCrypt en la BD.
-
-## Cómo actualizar semillas (si hace falta)
-- Generar hashes BCrypt localmente y reemplazar `ContrasenaHash` en `AppDbContext.OnModelCreating`.
-- Crear migración desde la raíz:
-```bash
-dotnet ef migrations add UpdateSeedPasswords --project src\SistemaBuenCorte.DAL --startup-project src\SistemaBuenCorte.Web
-dotnet ef database update --project src\SistemaBuenCorte.DAL --startup-project src\SistemaBuenCorte.Web
+dotnet test
 ```
 
 ## Autores
+
 - Dioris Arias — @KoroDomo
-- Gabriel Cuevas — @GabrielCuevas123 
+- Gabriel Cuevas — @GabrielCuevas123
 - Johanny Torres — @johannytorres
 - Josue David Guerrero — @guerrerodavid
 - Mayerlin Alcántara — @MayiiAV
 
 ---
+
 Programación III · ITLA · 2026

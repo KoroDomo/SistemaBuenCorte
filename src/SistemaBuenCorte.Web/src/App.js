@@ -79,7 +79,7 @@ function App() {
               path="/reportes"
               element={
                 <RutaProtegida rolRequerido="Administrador">
-                  <PlaceholderPage nombre="Dashboard" />
+                  <ReportesPage />
                 </RutaProtegida>
               }
             />

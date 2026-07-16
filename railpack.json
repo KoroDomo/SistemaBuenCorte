@@ -1,7 +1,0 @@
-{
-  "providers": {
-    "dotnet": {
-      "project": "SistemaBuenCorte.Web/SistemaBuenCorte.WEB.csproj"
-    }
-  }
-}
